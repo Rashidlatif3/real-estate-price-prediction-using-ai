@@ -1,0 +1,45 @@
+<% layout('layout', { title: 'Edit Property' }) %>
+
+    <section class="form-section">
+        <h2>Edit Property</h2>
+        <form action="/properties/<%= property._id %>" method="POST" enctype="multipart/form-data"
+            class="property-form">
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required value="<%= property.location %>" />
+            </div>
+            <div class="form-group">
+                <label for="size">Size (sq.ft.):</label>
+                <input type="number" id="size" name="size" required min="0" value="<%= property.size %>" />
+            </div>
+            <div class="form-group">
+                <label for="rooms">Number of Rooms:</label>
+                <input type="number" id="rooms" name="rooms" required min="0" value="<%= property.rooms %>" />
+            </div>
+            <div class="form-group">
+                <label for="price">Price (PKR):</label>
+                <input type="number" id="price" name="price" required min="0" value="<%= property.price %>" />
+            </div>
+            <div class="form-group">
+                <label for="type">Type:</label>
+                <select id="type" name="type" required>
+                    <option value="house" <%=property.type==='house' ? 'selected' : '' %>>House</option>
+                    <option value="flat" <%=property.type==='flat' ? 'selected' : '' %>>Flat</option>
+                    <option value="plot" <%=property.type==='plot' ? 'selected' : '' %>>Plot</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Current Image:</label>
+                <% if (property.image) { %>
+                    <img src="<%= property.image %>" alt="Property Image" class="edit-image" />
+                    <% } else { %>
+                        <p>No image uploaded.</p>
+                        <% } %>
+            </div>
+            <div class="form-group">
+                <label for="image">Change Image (optional):</label>
+                <input type="file" id="image" name="image" accept="image/*" />
+            </div>
+            <button type="submit" class="btn">Update Property</button>
+        </form>
+    </section>

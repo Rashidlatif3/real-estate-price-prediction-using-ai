@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home | AI Real Estate Portal</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">Tulip Estate</a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/properties/new">Add Property</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="top-buttons">
+            <a href="/properties/new" class="btn animated-btn">Add Property</a>
+            <a href="/advertisements/new" class="btn animated-btn">Add Advertisement</a>
+            <a href="/advertisements" class="btn animated-btn">See Advertisements</a>
+        </div>
+        <section class="search-filter">
+            <h2>Search & Filter Properties</h2>
+            <form method="GET" action="/">
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" value="<%= filters.location || '' %>"
+                        placeholder="Enter location" />
+                </div>
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <select id="type" name="type">
+                        <option value="">All</option>
+                        <option value="house" <%=filters.type==='house' ? 'selected' : '' %>>House</option>
+                        <option value="flat" <%=filters.type==='flat' ? 'selected' : '' %>>Flat</option>
+                        <option value="plot" <%=filters.type==='plot' ? 'selected' : '' %>>Plot</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="minPrice">Min Price:</label>
+                    <input type="number" id="minPrice" name="minPrice" value="<%= filters.minPrice || '' %>"
+                        placeholder="Minimum price" />
+                </div>
+                <div class="form-group">
+                    <label for="maxPrice">Max Price:</label>
+                    <input type="number" id="maxPrice" name="maxPrice" value="<%= filters.maxPrice || '' %>"
+                        placeholder="Maximum price" />
+                </div>
+                <button type="submit" class="btn animated-btn">Filter</button>
+            </form>
+        </section>
+
+        <section class="property-listings">
+            <h2>Property Listings</h2>
+            <% if (properties.length===0) { %>
+                <p>No properties found.</p>
+                <% } else { %>
+                    <div class="properties-grid">
+                        <% properties.forEach(function(property) { %>
+                            <div class="property-card <%= property.priceDiffPercent > 20 ? 'price-warning' : '' %>">
+                                <% if (property.image) { %>
+                                    <img src="<%= property.image %>" alt="Property Image" class="property-image" />
+                                    <% } else { %>
+                                        <div class="property-image placeholder">No Image</div>
+                                        <% } %>
+                                            <div class="property-details">
+                                                <h3>
+                                                    <%= property.type.charAt(0).toUpperCase() + property.type.slice(1)
+                                                        %> in <%= property.location %>
+                                                </h3>
+                                                <p>Size: <%= property.size %> sq.ft.</p>
+                                                <p>Rooms: <%= property.rooms %>
+                                                </p>
+                                                <p>Price: PKR <%= property.price.toLocaleString() %>
+                                                </p>
+                                                <p>Predicted Price: PKR <%= property.predictedPrice.toLocaleString() %>
+                                                </p>
+                                                <% if (property.priceDiffPercent> 20) { %>
+                                                    <p class="warning-text">Price differs by <%=
+                                                            property.priceDiffPercent.toFixed(2) %>% from prediction</p>
+                                                    <% } %>
+                                                        <div class="property-actions">
+                                                            <a href="/properties/<%= property._id %>/edit"
+                                                                class="btn btn-edit">Edit</a>
+                                                            <form action="/properties/<%= property._id %>/delete"
+                                                                method="POST"
+                                                                onsubmit="return confirm('Are you sure you want to delete this property?');"
+                                                                class="inline-form">
+                                                                <button type="submit"
+                                                                    class="btn btn-delete">Delete</button>
+                                                            </form>
+                                                        </div>
+                                            </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                    <% } %>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>© 2024 AI Real Estate Portal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

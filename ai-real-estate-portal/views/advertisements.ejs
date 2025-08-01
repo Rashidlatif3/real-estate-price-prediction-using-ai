@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Advertisements | AI Real Estate Portal</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">Tulip Estate</a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/properties/new">Add Property</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="advertisement-section">
+            <h2>Advertisements</h2>
+
+            <form action="/advertisements" method="POST" enctype="multipart/form-data" class="advertisement-form">
+                <div class="form-group">
+                    <label for="images">Upload Advertisement Images (max 10):</label>
+                    <input type="file" id="images" name="images" accept="image/*" multiple required />
+                </div>
+                <button type="submit" class="btn animated-btn">Upload Ads</button>
+            </form>
+
+            <div class="ads-gallery">
+                <% if (ads.length===0) { %>
+                    <p>No advertisements uploaded yet.</p>
+                    <% } else { %>
+                        <div class="ads-grid">
+                            <% ads.forEach(function(ad) { %>
+                                <div class="ad-card">
+                                    <a href="<%= ad.image %>" target="_blank" rel="noopener noreferrer">
+                                        <img src="<%= ad.image %>" alt="Advertisement Image" class="clickable-image" />
+                                    </a>
+                                    <form action="/advertisements/<%= ad._id %>/delete" method="POST" class="delete-ad-form">
+                                        <button type="submit" class="btn delete-btn">Delete</button>
+                                    </form>
+                                </div>
+                                <% }); %>
+                        </div>
+                        <% } %>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>© 2024 AI Real Estate Portal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

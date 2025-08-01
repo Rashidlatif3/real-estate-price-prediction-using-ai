@@ -1,0 +1,82 @@
+[
+    {
+        "location": "Karachi",
+        "size": 1200,
+        "rooms": 3,
+        "price": 1300000,
+        "type": "house",
+        "image": null
+    },
+    {
+        "location": "Lahore",
+        "size": 900,
+        "rooms": 2,
+        "price": 950000,
+        "type": "flat",
+        "image": null
+    },
+    {
+        "location": "Islamabad",
+        "size": 1500,
+        "rooms": 4,
+        "price": 1800000,
+        "type": "house",
+        "image": null
+    },
+    {
+        "location": "Rawalpindi",
+        "size": 800,
+        "rooms": 2,
+        "price": 850000,
+        "type": "flat",
+        "image": null
+    },
+    {
+        "location": "Faisalabad",
+        "size": 1000,
+        "rooms": 3,
+        "price": 1100000,
+        "type": "plot",
+        "image": null
+    },
+    {
+        "location": "Multan",
+        "size": 1100,
+        "rooms": 3,
+        "price": 1200000,
+        "type": "house",
+        "image": null
+    },
+    {
+        "location": "Peshawar",
+        "size": 950,
+        "rooms": 2,
+        "price": 900000,
+        "type": "flat",
+        "image": null
+    },
+    {
+        "location": "Quetta",
+        "size": 1300,
+        "rooms": 4,
+        "price": 1400000,
+        "type": "house",
+        "image": null
+    },
+    {
+        "location": "Sialkot",
+        "size": 850,
+        "rooms": 2,
+        "price": 800000,
+        "type": "plot",
+        "image": null
+    },
+    {
+        "location": "Gujranwala",
+        "size": 1000,
+        "rooms": 3,
+        "price": 1050000,
+        "type": "flat",
+        "image": null
+    }
+]

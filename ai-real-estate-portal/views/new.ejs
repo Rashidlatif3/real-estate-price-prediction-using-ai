@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Add New Property | AI Real Estate Portal</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">Tulip Estate</a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/properties/new">Add Property</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="form-section">
+            <h2>Add New Property</h2>
+            <form action="/properties" method="POST" enctype="multipart/form-data" class="property-form">
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" required placeholder="Enter location" />
+                </div>
+                <div class="form-group">
+                    <label for="size">Size (sq.ft.):</label>
+                    <input type="number" id="size" name="size" required min="0" placeholder="Enter size" />
+                </div>
+                <div class="form-group">
+                    <label for="rooms">Number of Rooms:</label>
+                    <input type="number" id="rooms" name="rooms" required min="0" placeholder="Enter number of rooms" />
+                </div>
+                <div class="form-group">
+                    <label for="price">Price (PKR):</label>
+                    <input type="number" id="price" name="price" required min="0" placeholder="Enter price" />
+                    <button type="button" id="predict-price-btn" class="btn btn-secondary"
+                        style="margin-top: 5px;">Predict Price</button>
+                    <p id="predicted-price" style="margin-top: 5px; font-weight: bold;"></p>
+                </div>
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <select id="type" name="type" required>
+                        <option value="">Select type</option>
+                        <option value="house">House</option>
+                        <option value="flat">Flat</option>
+                        <option value="plot">Plot</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image (optional):</label>
+                    <input type="file" id="image" name="image" accept="image/*" />
+                </div>
+                <button type="submit" class="btn">Add Property</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>© 2024 AI Real Estate Portal. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="/js/predictPrice.js"></script>
+</body>
+
+</html>

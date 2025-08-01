@@ -1,0 +1,61 @@
+<%- include('layout', { title: 'Dashboard' }) %>
+
+    <section>
+        <h2>Welcome, <%= user ? (user.name || user.email) : 'Guest' %>!</h2>
+    </section>
+
+    <section>
+        <h2>Property Dashboard</h2>
+        <% if (properties.length===0) { %>
+            <p>No properties found.</p>
+            <% } else { %>
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Location</th>
+                            <th>Size (sq.ft.)</th>
+                            <th>Rooms</th>
+                            <th>Price (PKR)</th>
+                            <th>Predicted Price (PKR)</th>
+                            <th>Price Difference (%)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% properties.forEach(function(property) { %>
+                            <tr class="<%= property.isPriceOff ? 'price-warning' : '' %>">
+                                <td>
+                                    <%= property.type.charAt(0).toUpperCase() + property.type.slice(1) %>
+                                </td>
+                                <td>
+                                    <%= property.location %>
+                                </td>
+                                <td>
+                                    <%= property.size %>
+                                </td>
+                                <td>
+                                    <%= property.rooms %>
+                                </td>
+                                <td>
+                                    <%= property.price.toLocaleString() %>
+                                </td>
+                                <td>
+                                    <%= property.predictedPrice.toLocaleString() %>
+                                </td>
+                                <td>
+                                    <%= property.priceDiffPercent.toFixed(2) %>
+                                </td>
+                                <td>
+                                    <a href="/properties/<%= property._id %>/edit" class="btn btn-edit">Edit</a>
+                                    <form action="/properties/<%= property._id %>/delete" method="POST"
+                                        onsubmit="return confirm('Are you sure?');" class="inline-form">
+                                        <button type="submit" class="btn btn-delete">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+                <% } %>
+    </section>
